@@ -1,12 +1,14 @@
 :root {
-  --bg: #090d16;
-  --panel: #111827;
-  --soft: #0d1320;
+  --bg: #070a11;
+  --panel: rgba(15, 22, 36, 0.72);
+  --panel-solid: #0f1624;
+  --soft: #0a0f1a;
   --text: #f8fafc;
   --muted: #94a3b8;
-  --line: rgba(148, 163, 184, 0.14);
+  --line: rgba(148, 163, 184, 0.12);
+  --line-bright: rgba(255, 255, 255, 0.08);
   --accent: #38bdf8;
-  --accent-soft: rgba(56, 189, 248, 0.12);
+  --accent-glow: rgba(56, 189, 248, 0.18);
   --font: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --display: 'Space Grotesk', sans-serif;
 }
@@ -24,7 +26,8 @@ html {
 
 body {
   font-family: var(--font);
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.07) 0%, transparent 55%);
   color: var(--text);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -45,8 +48,9 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(9, 13, 22, 0.85);
-  backdrop-filter: blur(14px);
+  background: rgba(7, 10, 17, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--line);
 }
 
@@ -86,16 +90,18 @@ a {
 
 .nav-links .nav-contact {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 var(--line-bright);
   padding: 9px 18px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: 8px;
+  transition: all 0.22s ease;
 }
 
 .nav-links .nav-contact:hover {
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.08);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
 }
 
 .menu-toggle {
@@ -109,7 +115,7 @@ a {
 
 /* Sections & Typography */
 .section {
-  padding: 105px 0;
+  padding: 110px 0;
 }
 
 .section-soft {
@@ -121,7 +127,7 @@ a {
 .eyebrow {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 2.2px;
   color: var(--accent);
   margin-bottom: 16px;
   text-transform: uppercase;
@@ -134,39 +140,45 @@ a {
   background: #10b981;
   border-radius: 50%;
   margin-right: 8px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
 }
 
 h1, h2, h3 {
   font-family: var(--display);
-  line-height: 1.15;
+  line-height: 1.14;
   color: var(--text);
 }
 
 h1 {
   font-size: clamp(2.8rem, 5.2vw, 4.4rem);
-  letter-spacing: -2px;
+  letter-spacing: -2.2px;
   font-weight: 700;
 }
 
 h2 {
   font-size: clamp(2.1rem, 4vw, 3rem);
-  letter-spacing: -1.2px;
+  letter-spacing: -1.3px;
 }
 
 .gradient-text {
-  background: linear-gradient(110deg, #f8fafc 15%, var(--accent) 100%);
+  background: linear-gradient(120deg, #ffffff 20%, #7dd3fc 65%, #38bdf8 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
 
-/* Hero Section */
+/* Hero Section with Subtle Minimalist Grid */
 .hero {
-  min-height: 640px;
+  min-height: 660px;
   display: flex;
   align-items: center;
   position: relative;
-  background: radial-gradient(circle at 82% 30%, rgba(56, 189, 248, 0.08), transparent 45%);
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 .hero-grid {
@@ -194,10 +206,10 @@ h2 {
   align-items: center;
   gap: 12px;
   padding: 13px 22px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: all 0.2s ease;
+  transition: all 0.22s ease;
 }
 
 .button:hover {
@@ -206,22 +218,27 @@ h2 {
 
 .button-primary {
   background: var(--text);
-  color: #090d16;
+  color: #070a11;
+  box-shadow: 0 8px 24px rgba(248, 250, 252, 0.12);
 }
 
 .button-primary:hover {
   background: var(--accent);
-  color: #090d16;
+  color: #070a11;
+  box-shadow: 0 10px 28px rgba(56, 189, 248, 0.28);
 }
 
 .button-outline {
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(15, 22, 36, 0.5);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 var(--line-bright);
   color: var(--text);
 }
 
 .button-outline:hover {
-  border-color: var(--muted);
+  border-color: rgba(148, 163, 184, 0.4);
+  background: rgba(30, 41, 59, 0.6);
 }
 
 .hero-meta {
@@ -231,7 +248,7 @@ h2 {
   margin-top: 52px;
   color: #64748b;
   font-size: 0.68rem;
-  letter-spacing: 1.6px;
+  letter-spacing: 1.8px;
   font-weight: 600;
 }
 
@@ -241,7 +258,7 @@ h2 {
   background: #334155;
 }
 
-/* Executive Profile Card */
+/* Sleek Glass Profile Card */
 .hero-visual {
   position: relative;
   display: grid;
@@ -257,10 +274,20 @@ h2 {
   max-width: 320px;
   padding: 26px 28px 30px;
   background: var(--panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--line);
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    inset 0 1px 0 var(--line-bright),
+    0 24px 60px rgba(0, 0, 0, 0.55);
+  border-radius: 16px;
   text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .card-top {
@@ -288,14 +315,15 @@ h2 {
 }
 
 .avatar-placeholder {
-  width: 92px;
-  height: 92px;
+  width: 96px;
+  height: 96px;
   margin: 0 auto 18px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: #1e293b;
-  border: 2px solid var(--accent);
+  border: 2px solid rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.08);
   font: 700 1.85rem var(--display);
   color: var(--text);
   letter-spacing: 1px;
@@ -323,8 +351,8 @@ h2 {
   font-size: 0.68rem;
   font-weight: 600;
   padding: 5px 10px;
-  border-radius: 4px;
-  background: #1e293b;
+  border-radius: 6px;
+  background: rgba(30, 41, 59, 0.7);
   border: 1px solid var(--line);
   color: #cbd5e1;
 }
@@ -369,9 +397,12 @@ h2 {
 
 .about-mark {
   height: 280px;
-  border-radius: 12px;
-  background: var(--panel);
+  border-radius: 16px;
+  background: var(--panel-solid);
   border: 1px solid var(--line);
+  box-shadow:
+    inset 0 1px 0 var(--line-bright),
+    0 20px 45px rgba(0, 0, 0, 0.45);
   display: grid;
   place-items: center;
   font: 700 4.5rem var(--display);
@@ -437,15 +468,19 @@ h2 {
 .skill-card {
   padding: 26px 22px;
   background: var(--panel);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--line);
-  border-radius: 10px;
-  transition: all 0.22s ease;
+  box-shadow: inset 0 1px 0 var(--line-bright);
+  border-radius: 14px;
+  transition: all 0.25s ease;
 }
 
 .skill-card:hover, .project-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(56, 189, 248, 0.45);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(56, 189, 248, 0.2),
+    0 18px 36px rgba(0, 0, 0, 0.4);
 }
 
 .skill-icon {
@@ -453,8 +488,8 @@ h2 {
   height: 42px;
   display: grid;
   place-items: center;
-  border-radius: 8px;
-  background: #1e293b;
+  border-radius: 10px;
+  background: rgba(30, 41, 59, 0.8);
   border: 1px solid var(--line);
   color: var(--accent);
   font: 700 1.1rem var(--display);
@@ -474,7 +509,7 @@ h2 {
 
 .skill-level {
   height: 4px;
-  background: #1e293b;
+  background: rgba(30, 41, 59, 0.9);
   border-radius: 4px;
   margin: 18px 0 8px;
   overflow: hidden;
@@ -483,7 +518,7 @@ h2 {
 .skill-level span {
   display: block;
   height: 100%;
-  background: var(--accent);
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
   border-radius: 4px;
 }
 
@@ -503,16 +538,23 @@ h2 {
 
 .project-card {
   background: var(--panel);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  box-shadow: inset 0 1px 0 var(--line-bright);
+  border-radius: 14px;
   overflow: hidden;
-  transition: all 0.22s ease;
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
 }
 
 .project-card img {
   border-bottom: 1px solid var(--line);
+  transition: transform 0.35s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.02);
 }
 
 .project-art {
@@ -529,21 +571,21 @@ h2 {
   top: 14px;
   left: 16px;
   font: 700 0.75rem var(--display);
-  color: rgba(248, 250, 252, 0.5);
+  color: rgba(248, 250, 252, 0.45);
 }
 
 .art-one, .art-two, .art-three {
-  background: linear-gradient(145deg, #162033, #0f172a);
+  background: linear-gradient(145deg, #0f172a, #090d16);
 }
 
 .art-window {
   width: 66%;
   height: 112px;
-  border-radius: 6px;
+  border-radius: 8px;
   background: #f8fafc;
   color: #0f172a;
   padding: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
 .art-window i {
@@ -573,7 +615,7 @@ h2 {
 .art-shapes i {
   position: absolute;
   display: block;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid rgba(56, 189, 248, 0.35);
   background: rgba(56, 189, 248, 0.08);
 }
@@ -602,10 +644,10 @@ h2 {
 .code-art {
   font: 500 0.84rem monospace;
   color: var(--accent);
-  background: #090d16;
+  background: #070a11;
   border: 1px solid var(--line);
   padding: 20px 26px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .project-info {
@@ -662,8 +704,10 @@ h2 {
 .contact-card {
   padding: 30px;
   background: var(--panel);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  box-shadow: inset 0 1px 0 var(--line-bright);
+  border-radius: 16px;
 }
 
 .contact-row {
@@ -677,8 +721,8 @@ h2 {
 .contact-icon {
   width: 38px;
   height: 38px;
-  border-radius: 6px;
-  background: #1e293b;
+  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.8);
   border: 1px solid var(--line);
   display: grid;
   place-items: center;
@@ -745,7 +789,7 @@ h2 {
     left: 0;
     right: 0;
     padding: 20px 5%;
-    background: var(--panel);
+    background: var(--panel-solid);
     border-bottom: 1px solid var(--line);
     flex-direction: column;
     align-items: stretch;
@@ -757,7 +801,7 @@ h2 {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-card { max-width: 100%; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
-  .about-mark { height: 180px; }
+  .about-mark { height: 220px; }
   .projects-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; text-align: center; }
 }
